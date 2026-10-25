@@ -1,0 +1,35 @@
+STOCKING SCHEDULER
+==================
+
+To start the program, double-click:
+
+    Windows:  StockingScheduler.exe
+    Mac:      Stocking Scheduler.app
+    Linux:    StockingScheduler
+
+The first launch can take a few seconds while it unpacks — that's normal.
+
+Windows may show "Windows protected your PC" the first time because the
+program isn't signed. Click "More info", then "Run anyway".
+On a Mac, right-click the app and choose "Open" the first time.
+
+YOUR SCHEDULES
+--------------
+Everything you enter is saved automatically in a folder called "data" that
+appears next to the program (the exact location is shown at the bottom of the
+Help window). To back up or move to another computer, copy that folder.
+
+Prefer a normal install with a Start-menu / Applications entry? Use the
+StockingScheduler-Setup download instead of this zip.
+
+If you keep the program on a shared drive, everyone who opens it from there
+sees the same schedules.
+
+QUICK START
+-----------
+1. Roster (left): Add your people; tick who is working today.
+2. Drag over cells in the grid, then click a task on the left to fill them.
+   Ctrl+T assigns one task to several people at once.
+3. Print / Export: print the board, one page per person, PDF, PNG, or Excel.
+
+Press "Help" in the toolbar for more.

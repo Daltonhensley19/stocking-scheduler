@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- macOS Installer wizard layout, filled in by build.py when it builds the
+     installer: {VERSION}, {ARCH} and {COMPONENT} are replaced.
+     (No double hyphens inside XML comments, or productbuild rejects the file.) -->
+<installer-gui-script minSpecVersion="2">
+    <title>Stocking Scheduler</title>
+    <welcome file="welcome.html" mime-type="text/html"/>
+    <conclusion file="conclusion.html" mime-type="text/html"/>
+    <options customize="never" require-scripts="false" hostArchitectures="{ARCH}"/>
+    <domains enable_localSystem="true"/>
+    <choices-outline>
+        <line choice="app"/>
+    </choices-outline>
+    <choice id="app" visible="false" title="Stocking Scheduler">
+        <pkg-ref id="com.stocking1.scheduler"/>
+    </choice>
+    <pkg-ref id="com.stocking1.scheduler" version="{VERSION}" onConclusion="none">{COMPONENT}</pkg-ref>
+</installer-gui-script>

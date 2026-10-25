@@ -1,0 +1,48 @@
+# --- Python / uv ---------------------------------------------------------------
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+# (uv.lock is deliberately NOT ignored: it pins the exact versions builds use)
+
+# --- Tool caches -----------------------------------------------------------------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- App data ----------------------------------------------------------------------
+# your schedules live here — remove this line if you want them version-controlled
+/data/
+# leftovers from the app's atomic saves / write-permission check
+*.tmp
+.write-test
+# exports saved into the project folder (Print / Export suggests "2026-03-02-schedule.pdf" etc.)
+[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*.pdf
+[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*.png
+[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*.xlsx
+
+# --- Build output (PyInstaller, installers) -------------------------------------------
+# (StockingScheduler.spec is source — don't add the usual "*.spec" rule)
+/build/
+/dist/
+/release/
+
+# --- Editors ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Operating systems -----------------------------------------------------------------
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+
+# --- Claude Code: personal settings (shared .claude/settings.json stays tracked) --------
+.claude/settings.local.json
+
+# --- Kept local: reference screenshot of someone else's post (has their name/photo) ----
+demo_of_scheduler_screenshot.JPG

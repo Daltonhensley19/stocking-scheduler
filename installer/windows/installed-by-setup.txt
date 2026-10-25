@@ -1,0 +1,8 @@
+This copy of Stocking Scheduler was installed with the setup wizard.
+
+Its schedules are kept in your user folder:
+    %LOCALAPPDATA%\StockingScheduler\data
+(the exact path is shown at the bottom of the Help window).
+
+Don't delete this file: without it the program would start saving into its
+own program folder instead.
