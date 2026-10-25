@@ -40,7 +40,8 @@ SetupIconFile={#SourcePath}..\..\assets\icon.ico
 UninstallDisplayIcon={app}\{#AppExe}
 UninstallDisplayName={#AppName}
 OutputDir={#OutputDir}
-OutputBaseFilename=StockingScheduler-Setup-{#AppVersion}-windows
+; No version in the file name, so the README's "latest download" link never goes stale
+OutputBaseFilename=StockingScheduler-Setup-windows
 Compression=lzma2/max
 SolidCompression=yes
 ; Offer to close a running copy when upgrading

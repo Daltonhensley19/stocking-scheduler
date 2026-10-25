@@ -2,17 +2,102 @@
 
 A desktop app for planning one day of freight for a small stocking team
 (picker + stockers). It's the "Daily Freight Pick & Run Schedule" spreadsheet
-idea, but you build the day by clicking instead of typing into cells.
+idea, but you build the day by clicking instead of typing into cells — then
+print it, save it as a PDF or picture for the group chat, or export it to Excel.
 
-## Run it
+It's free, works without an internet connection, and saves your work
+automatically.
 
-```sh
-uv run stocking-scheduler        # or: uv run python -m scheduler
-```
+## Download & install
 
-`uv` creates the virtual environment and installs PySide6 + openpyxl the first
-time. Everything is saved automatically to the `data/` folder next to this
-file (set `STOCKING_SCHEDULER_DATA=/some/folder` to put it elsewhere).
+**Pick the download for your computer:**
+
+| Your computer | Download |
+|---|---|
+| 🪟 **Windows 10 or 11** | **[⬇ Download for Windows](https://github.com/Daltonhensley19/stocking-scheduler/releases/latest/download/StockingScheduler-Setup-windows.exe)** |
+| 🍎 **Mac with an Apple chip** (M1, M2, M3, M4…) | **[⬇ Download for Apple-chip Mac](https://github.com/Daltonhensley19/stocking-scheduler/releases/latest/download/StockingScheduler-Setup-macos-arm64.pkg)** |
+| 🍎 **Mac with an Intel chip** (older Macs) | **[⬇ Download for Intel Mac](https://github.com/Daltonhensley19/stocking-scheduler/releases/latest/download/StockingScheduler-Setup-macos-intel.pkg)** |
+
+All versions are also on the **[Releases page](https://github.com/Daltonhensley19/stocking-scheduler/releases/latest)**.
+
+> **Not sure which Mac you have?** Click the **Apple logo** in the top-left
+> corner of the screen → **About This Mac**. If the line says **Chip: Apple M…**, get the
+> Apple-chip download. If it says **Processor: … Intel …**, get the Intel one.
+
+### Installing on Windows
+
+1. Click **Download for Windows** above.
+2. Your browser may say the file *"isn't commonly downloaded"*. That's because
+   the app is new, not because something is wrong. In **Edge**: click the
+   **⋯** next to the download → **Keep** → **Show more** → **Keep anyway**.
+   In **Chrome**: click **Keep**.
+3. Open the downloaded file (**StockingScheduler-Setup-windows.exe**).
+4. A blue box may say **"Windows protected your PC."** Click **More info**, then
+   **Run anyway**. (This only happens once, because the app isn't from a big
+   company that pays Microsoft to vouch for it.)
+5. The setup wizard opens. Click **Next** → **Install** → **Finish**.
+   You **don't** need an administrator password.
+6. Stocking Scheduler opens. Next time, find it in the **Start menu** (or on
+   your desktop, if you ticked "Create a desktop shortcut").
+
+### Installing on a Mac
+
+1. Click the right Mac download above (see *"Not sure which Mac you have?"*).
+2. Open your **Downloads** folder and double-click the **.pkg** file.
+3. The Mac will probably say the file **"can't be opened"** or is from an
+   **"unidentified developer."** That's because the app isn't registered with
+   Apple, not because something is wrong. To open it anyway:
+   * **macOS 15 (Sequoia) or newer:** click **Done**, open **System Settings**
+     → **Privacy & Security**, scroll down, and click **Open Anyway** next to
+     the message about StockingScheduler. Enter your Mac password if asked.
+   * **Older macOS:** hold **Control** and click the .pkg file → choose
+     **Open** → click **Open** again.
+4. The installer opens. Click **Continue** → **Install**, and type your Mac
+   password when asked (that's normal for anything added to Applications).
+5. Click **Close** when it finishes. Open **Stocking Scheduler** from
+   **Launchpad** or your **Applications** folder. It opens normally from now on.
+
+### Updating to a new version
+
+Download the newest version from the links above and install it the same way.
+It replaces the old version, and **all your schedules are kept**.
+
+### Uninstalling
+
+* **Windows:** Start menu → **Settings** → **Apps** → find **Stocking
+  Scheduler** → **Uninstall**.
+* **Mac:** open **Applications** and drag **Stocking Scheduler** to the
+  **Trash**.
+
+Either way, your schedules are **not** deleted (see below), so reinstalling
+brings everything back.
+
+### Your schedules
+
+Everything is saved automatically as you work — there's no Save button.
+Your schedules live in your own user folder:
+
+* **Windows:** `%LOCALAPPDATA%\StockingScheduler\data` — paste that into the
+  File Explorer address bar to open it.
+* **Mac:** `~/Library/Application Support/StockingScheduler/data` — in Finder,
+  choose **Go → Go to Folder…** and paste it.
+
+The exact location is also shown at the bottom of the app's **Help** window.
+To **back up** or **move to another computer**, copy that whole `data` folder
+to the same place on the other computer.
+
+### Something not working?
+
+* **The app won't open after installing (Mac):** open **System Settings →
+  Privacy & Security** and look for an **Open Anyway** button for Stocking
+  Scheduler.
+* **Text looks tiny or the grid is cramped:** click **Fit Day** in the toolbar
+  to switch it off, or hold **Ctrl** and scroll to zoom the rows.
+* **Something else:** [open an issue](https://github.com/Daltonhensley19/stocking-scheduler/issues) describing what happened.
+
+---
+
+# Using the app
 
 ## How the screen is laid out
 
@@ -80,7 +165,7 @@ Undo/Redo (Ctrl+Z / Ctrl+Shift+Z) covers every change to the day.
   without scrolling (on by default, remembered per computer). Ctrl+mouse wheel
   or Ctrl + / Ctrl − zooms the rows instead; Ctrl+0 resets.
 
-## Files
+## What's in the data folder
 
 ```
 data/
@@ -91,79 +176,58 @@ data/
 
 Plain JSON — safe to back up or copy to another machine.
 
-## Handing it to people who don't have Python
+---
 
-### Installers (easiest for Windows and Mac users)
+# For developers
 
-Push this folder to GitHub and push a tag such as `v1.0` —
-`.github/workflows/build.yml` builds everything and attaches it to a GitHub
-Release (or run the workflow from the Actions tab and grab the files under
-"Artifacts"). The tag becomes the version number.
-
-| Download | For | What the person does |
-|---|---|---|
-| `StockingScheduler-Setup-1.0-windows.exe` | Windows 10/11 | Run it → Next → Install → Finish. No admin password needed. |
-| `StockingScheduler-Setup-1.0-macos-arm64.pkg` | Macs with Apple Silicon (M1 and newer) | Open it → Continue → Install (asks for the Mac password). |
-| `StockingScheduler-Setup-1.0-macos-intel.pkg` | Older Intel Macs | Same as above. |
-
-* **Windows** — an Inno Setup wizard. It installs for the current user by
-  default (no admin rights — handy on locked-down PCs); people who are admins
-  can pick "all users". It adds a Start-menu entry, an optional desktop icon, a
-  "Launch now" box on the last page and an entry in *Settings → Apps* to
-  uninstall. Running a newer setup upgrades in place.
-* **macOS** — a standard `.pkg`, so it opens the familiar Installer wizard and
-  puts *Stocking Scheduler* in Applications. To uninstall, drag it to the Trash.
-
-**Where installed copies keep schedules:** the user's own folder —
-`%LOCALAPPDATA%\StockingScheduler\data` on Windows,
-`~/Library/Application Support/StockingScheduler/data` on a Mac (the exact path
-is in the app's Help window). Upgrading or uninstalling never deletes it. If
-someone switches from the zip download to the installer, copy their old `data`
-folder (next to the old program) to that location.
-
-**The installers aren't code-signed**, so the first open shows a warning:
-* Windows SmartScreen: *More info → Run anyway* (once, for the setup file).
-* Mac: double-clicking the `.pkg` says it "can't be opened". Right-click it →
-  *Open* → *Open*; on macOS 15 (Sequoia) and newer, instead go to
-  *System Settings → Privacy & Security* and click *Open Anyway*. The installed
-  app itself then opens normally.
-
-Removing these warnings needs a paid code-signing certificate (Windows) and an
-Apple Developer account for notarization (Mac).
-
-To build an installer yourself, run this on that OS (Windows also needs
-[Inno Setup 6](https://jrsoftware.org/isdl.php): `winget install JRSoftware.InnoSetup`):
+## Run from source
 
 ```sh
-uv run --group build python build.py --installer
+uv run stocking-scheduler        # or: uv run python -m scheduler
 ```
 
-### Portable downloads (no install)
+`uv` creates the virtual environment and installs PySide6 + openpyxl the first
+time. When run from source, everything is saved to the `data/` folder next to
+this file (set `STOCKING_SCHEDULER_DATA=/some/folder` to put it elsewhere).
+
+## Building the downloads
+
+**Releases are built by GitHub Actions** (`.github/workflows/build.yml`). Push a
+tag such as `v1.1` and it builds every download and publishes a Release; the
+tag becomes the version number. (Run the workflow from the Actions tab instead
+to get the files under "Artifacts" without publishing.)
+
+| File | What it is |
+|---|---|
+| `StockingScheduler-Setup-windows.exe` | Windows setup wizard (Inno Setup) — per-user install, no admin needed |
+| `StockingScheduler-Setup-macos-arm64.pkg` / `-macos-intel.pkg` | macOS Installer package → /Applications |
+| `StockingScheduler-windows.zip`, `-macos-*.zip`, `-linux.tar.gz` | Portable copies, no install |
+
+The installer file names have no version number on purpose, so the
+`releases/latest/download/…` links above always fetch the newest one.
+
+**Data location.** Installed copies keep schedules in the user's app-data
+folder, so upgrades and uninstalls never touch them (the Windows installer drops
+an `installed-by-setup.txt` marker next to the exe to signal this). A portable
+copy keeps its `data` folder **next to the executable** instead — put it on a
+shared drive and everyone who opens it from there sees the same schedules.
+
+**Signing.** Nothing is code-signed, which is why users see the SmartScreen /
+Gatekeeper warnings described above. Removing them needs a Windows
+code-signing certificate and an Apple Developer account (for notarization).
+
+**Building locally.** PyInstaller builds only for the OS it runs on. On that OS
+(install [uv](https://docs.astral.sh/uv/), then `uv sync --group build`):
 
 ```sh
-uv run --group build python build.py            # single file — easiest to hand out
-uv run --group build python build.py --onedir   # folder build — starts faster
+uv run --group build python build.py               # portable single file
+uv run --group build python build.py --onedir      # portable folder (starts faster)
+uv run --group build python build.py --installer   # setup wizard (Windows / macOS)
 ```
 
-That produces `dist/StockingScheduler` (`.exe` on Windows, `Stocking Scheduler.app`
-on a Mac) and a zip/tar in `release/` with `RUNNING.txt` alongside it. The
-script launches the result once headlessly to make sure it starts. The GitHub
-workflow builds these too, plus the Linux `tar.gz`.
-
-A portable copy keeps its `data` folder **next to the executable** (or in the
-user's app-data folder if that location is read-only), so schedules are easy
-to find and back up. Put it on a shared drive and everyone who opens it from
-there sees the same schedules — the installers can't do that, since each
-installed copy keeps its own data.
-
-**PyInstaller builds only for the OS it runs on**, so build Windows files on a
-Windows PC (install [uv](https://docs.astral.sh/uv/) first, then
-`uv sync --group build` in this folder) or let GitHub Actions do it.
-
-Notes for recipients (also in `RUNNING.txt`):
-- The single-file build takes a few seconds to open the first time — it unpacks itself.
-- Windows SmartScreen will warn once because the exe isn't code-signed:
-  *More info → Run anyway*. On a Mac: right-click → Open the first time.
+The Windows installer also needs [Inno Setup 6](https://jrsoftware.org/isdl.php)
+(`winget install JRSoftware.InnoSetup`). Output goes to `release/`, and the
+script launches the built app once headlessly to make sure it starts.
 
 ## Code layout
 

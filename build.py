@@ -8,8 +8,11 @@ Output lands in release/, e.g.
     release/StockingScheduler-windows.zip   (contains StockingScheduler.exe)
     release/StockingScheduler-linux.tar.gz
     release/StockingScheduler-macos.zip     (contains Stocking Scheduler.app)
-    release/StockingScheduler-Setup-1.0-windows.exe   (--installer, needs Inno Setup 6)
-    release/StockingScheduler-Setup-1.0-macos-arm64.pkg  (--installer)
+    release/StockingScheduler-Setup-windows.exe      (--installer, needs Inno Setup 6)
+    release/StockingScheduler-Setup-macos-arm64.pkg  (--installer)
+
+Installer file names carry no version number so the README can link to
+github.com/.../releases/latest/download/<name>; the version is inside them.
 
 PyInstaller can only build for the platform it runs on, so run this on a
 Windows PC to get the Windows .exe (or let GitHub Actions build all of them).
@@ -73,7 +76,7 @@ def windows_installer(built: Path, version: str) -> Path:
     RELEASE.mkdir(exist_ok=True)
     run([iscc, f"/DAppVersion={version}", f"/DSourceDir={built}", f"/DOutputDir={RELEASE}",
          str(ROOT / "installer" / "windows" / "StockingScheduler.iss")])
-    return RELEASE / f"{NAME}-Setup-{version}-windows.exe"
+    return RELEASE / f"{NAME}-Setup-windows.exe"
 
 
 def macos_installer(built: Path, version: str) -> Path:
@@ -110,7 +113,7 @@ def macos_installer(built: Path, version: str) -> Path:
         shutil.copy(src / page, resources / page)
 
     RELEASE.mkdir(exist_ok=True)
-    out = RELEASE / f"{NAME}-Setup-{version}-{os_tag()}.pkg"
+    out = RELEASE / f"{NAME}-Setup-{os_tag()}.pkg"
     run(["productbuild", "--distribution", str(work / "distribution.xml"), "--resources", str(resources),
          "--package-path", str(work), str(out)])
     return out

@@ -76,3 +76,20 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: downloads/*
+          body: |
+            ## Which file do I need?
+
+            | Your computer | Download this |
+            |---|---|
+            | Windows 10 or 11 | **StockingScheduler-Setup-windows.exe** |
+            | Mac with an Apple chip (M1, M2, M3, M4…) | **StockingScheduler-Setup-macos-arm64.pkg** |
+            | Mac with an Intel chip | **StockingScheduler-Setup-macos-intel.pkg** |
+
+            Not sure which Mac you have? Apple logo (top-left) → **About This Mac** → look at **Chip**.
+
+            Your computer will warn you the first time because the app isn't code-signed — that's expected.
+            **[Step-by-step install help, including those warnings](${{ github.server_url }}/${{ github.repository }}#download--install)**
+
+            Updating? Just install the new version over the old one — your schedules are kept.
+
+            <sub>The `.zip` / `.tar.gz` files are portable copies for advanced users; most people don't need them.</sub>
